@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="services_page" name="Our Services">
+        <t t-call="website.layout">
+            <t t-set="title">Services — Ads On Marketing</t>
+
+            <div id="wrap" class="agency-page">
+
+                <!-- Page Hero -->
+                <section class="page-hero">
+                    <div class="container text-center">
+                        <span class="section-tag">Our Services</span>
+                        <h1 class="page-hero-title">What We Do Best</h1>
+                        <p class="page-hero-desc">
+                            End-to-end marketing solutions crafted for businesses that want to grow
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Service Detail Sections -->
+                <section class="agency-section">
+                    <div class="container">
+
+                        <!-- Creative -->
+                        <div class="service-detail-row row align-items-center g-5 mb-5 pb-5">
+                            <div class="col-lg-6">
+                                <div class="service-detail-visual bg-gradient-purple">
+                                    <i class="fa fa-paint-brush fa-4x"/>
+                                    <div class="visual-label">Creative Team</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="section-tag">01</span>
+                                <h3 class="service-detail-title">Creative Design</h3>
+                                <p class="service-detail-desc">
+                                    Our creative team transforms brand visions into compelling visual stories.
+                                    From logos and brand identity systems to campaign key visuals, social media
+                                    templates, and billboard designs — every pixel is purposeful.
+                                </p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Brand Identity &amp; Logo Design</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Campaign Key Visuals</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Social Media Content Design</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Billboard &amp; Print Collateral</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Video &amp; Motion Graphics</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Media Buying -->
+                        <div class="service-detail-row row align-items-center g-5 mb-5 pb-5 flex-lg-row-reverse">
+                            <div class="col-lg-6">
+                                <div class="service-detail-visual bg-gradient-blue">
+                                    <i class="fa fa-bullhorn fa-4x"/>
+                                    <div class="visual-label">Media Team</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="section-tag">02</span>
+                                <h3 class="service-detail-title">Media Buying</h3>
+                                <p class="service-detail-desc">
+                                    Strategic media planning and buying across digital and traditional channels.
+                                    We negotiate the best rates, optimize placements in real-time, and ensure
+                                    every ringgit of your ad spend delivers maximum ROI.
+                                </p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Google Ads &amp; SEM</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Facebook &amp; Instagram Ads</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Billboard &amp; OOH Placement</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Programmatic Display</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>TikTok &amp; YouTube Ads</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="service-detail-row row align-items-center g-5 mb-5 pb-5">
+                            <div class="col-lg-6">
+                                <div class="service-detail-visual bg-gradient-pink">
+                                    <i class="fa fa-share-alt fa-4x"/>
+                                    <div class="visual-label">Social Team</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="section-tag">03</span>
+                                <h3 class="service-detail-title">Social Media Management</h3>
+                                <p class="service-detail-desc">
+                                    Building vibrant online communities that love your brand. We handle
+                                    everything from content calendars and daily posting to community
+                                    management, influencer partnerships, and viral campaigns.
+                                </p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Content Calendar Planning</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Community Management</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>KOL &amp; Influencer Marketing</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Social Listening &amp; Analytics</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Crisis Communication</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Strategy -->
+                        <div class="service-detail-row row align-items-center g-5 mb-5 pb-5 flex-lg-row-reverse">
+                            <div class="col-lg-6">
+                                <div class="service-detail-visual bg-gradient-green">
+                                    <i class="fa fa-lightbulb-o fa-4x"/>
+                                    <div class="visual-label">Strategy Team</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="section-tag">04</span>
+                                <h3 class="service-detail-title">Strategy &amp; Consulting</h3>
+                                <p class="service-detail-desc">
+                                    Data-driven marketing strategies that align with your business goals.
+                                    Our strategists analyze markets, audiences, and competitors to craft
+                                    roadmaps that guide every creative and media decision.
+                                </p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Market Research &amp; Analysis</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Competitive Benchmarking</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Campaign Strategy &amp; Planning</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Brand Positioning</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Performance Analytics</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Client Services -->
+                        <div class="service-detail-row row align-items-center g-5 mb-5 pb-5">
+                            <div class="col-lg-6">
+                                <div class="service-detail-visual bg-gradient-orange">
+                                    <i class="fa fa-handshake-o fa-4x"/>
+                                    <div class="visual-label">Client Services</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="section-tag">05</span>
+                                <h3 class="service-detail-title">Client Services</h3>
+                                <p class="service-detail-desc">
+                                    Your dedicated point of contact for everything. Our account managers
+                                    ensure seamless project delivery, transparent communication, and
+                                    campaigns that consistently exceed expectations.
+                                </p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Dedicated Account Management</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Project Coordination</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Budget &amp; Timeline Management</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Regular Performance Reports</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Quarterly Business Reviews</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Field Marketing -->
+                        <div class="service-detail-row row align-items-center g-5 mb-5 pb-5 flex-lg-row-reverse">
+                            <div class="col-lg-6">
+                                <div class="service-detail-visual bg-gradient-red">
+                                    <i class="fa fa-map-marker fa-4x"/>
+                                    <div class="visual-label">Field Team</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span class="section-tag">06</span>
+                                <h3 class="service-detail-title">Field Marketing</h3>
+                                <p class="service-detail-desc">
+                                    Bringing brands to life with real-world activations. From product launches
+                                    and roadshows to experiential events and pop-up installations — we create
+                                    unforgettable in-person experiences that drive awareness and conversions.
+                                </p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Event Management</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Product Launch Activations</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Roadshows &amp; Mall Activations</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Experiential Marketing</li>
+                                    <li><i class="fa fa-check-circle text-success me-2"/>Sampling &amp; Promoter Management</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="agency-cta">
+                    <div class="cta-bg-shapes">
+                        <div class="shape shape-1"/>
+                        <div class="shape shape-2"/>
+                    </div>
+                    <div class="container position-relative text-center">
+                        <h2 class="cta-title">Need a Custom Solution?</h2>
+                        <p class="cta-desc">
+                            We tailor our services to fit your unique business needs.
+                        </p>
+                        <a href="/contact-us" class="btn btn-white btn-lg">
+                            Let's Talk <i class="fa fa-arrow-right ms-2"/>
+                        </a>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

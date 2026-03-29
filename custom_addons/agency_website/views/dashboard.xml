@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="dashboard_page" name="Public Dashboard">
+        <t t-call="website.layout">
+            <t t-set="title">Dashboard — Ads On Marketing</t>
+
+            <div id="wrap" class="agency-page">
+
+                <!-- Page Hero -->
+                <section class="page-hero">
+                    <div class="container text-center">
+                        <span class="section-tag">Live Dashboard</span>
+                        <h1 class="page-hero-title">Agency Performance</h1>
+                        <p class="page-hero-desc">
+                            Real-time metrics from our internal task tracker
+                        </p>
+                    </div>
+                </section>
+
+                <!-- KPI Cards -->
+                <section class="agency-section pt-0">
+                    <div class="container">
+
+                        <!-- Top KPIs -->
+                        <div class="row g-4 mb-5">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="kpi-card">
+                                    <div class="kpi-icon bg-gradient-purple">
+                                        <i class="fa fa-tasks"/>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <div class="kpi-number"><t t-esc="total_tasks"/></div>
+                                        <div class="kpi-label">Total Tasks</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="kpi-card">
+                                    <div class="kpi-icon bg-gradient-green">
+                                        <i class="fa fa-check-circle"/>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <div class="kpi-number text-success"><t t-esc="done_tasks"/></div>
+                                        <div class="kpi-label">Completed</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="kpi-card">
+                                    <div class="kpi-icon bg-gradient-red">
+                                        <i class="fa fa-exclamation-triangle"/>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <div class="kpi-number text-danger"><t t-esc="overdue_count"/></div>
+                                        <div class="kpi-label">Overdue</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="kpi-card">
+                                    <div class="kpi-icon bg-gradient-blue">
+                                        <i class="fa fa-percent"/>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <div class="kpi-number text-info">
+                                            <t t-if="total_tasks">
+                                                <t t-esc="int(done_tasks / total_tasks * 100)"/>%
+                                            </t>
+                                            <t t-else="">0%</t>
+                                        </div>
+                                        <div class="kpi-label">Completion Rate</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4">
+                            <!-- Status Distribution -->
+                            <div class="col-lg-6">
+                                <div class="dashboard-card">
+                                    <h5 class="dashboard-card-title">
+                                        <i class="fa fa-pie-chart me-2 text-purple"/>
+                                        Task Status Distribution
+                                    </h5>
+                                    <div class="status-bars mt-4">
+                                        <t t-set="status_labels" t-value="{'todo': 'To Do', 'inprogress': 'In Progress', 'review': 'Review', 'done': 'Done', 'stuck': 'Stuck'}"/>
+                                        <t t-set="status_colors" t-value="{'todo': '#64748b', 'inprogress': '#3b82f6', 'review': '#7c3aed', 'done': '#22c55e', 'stuck': '#ef4444'}"/>
+                                        <t t-foreach="['todo', 'inprogress', 'review', 'done', 'stuck']" t-as="s">
+                                            <t t-set="s_count" t-value="status_map.get(s, 0)"/>
+                                            <t t-set="s_pct" t-value="int(s_count / total_tasks * 100) if total_tasks else 0"/>
+                                            <div class="status-bar-item mb-3">
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span class="fw-medium"><t t-esc="status_labels.get(s, s)"/></span>
+                                                    <span class="text-muted"><t t-esc="s_count"/> tasks (<t t-esc="s_pct"/>%)</span>
+                                                </div>
+                                                <div class="progress" style="height: 10px; border-radius: 5px;">
+                                                    <div class="progress-bar"
+                                                         t-attf-style="width: #{s_pct}%; background-color: #{status_colors.get(s, '#6c63ff')}"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Team Distribution -->
+                            <div class="col-lg-6">
+                                <div class="dashboard-card">
+                                    <h5 class="dashboard-card-title">
+                                        <i class="fa fa-users me-2 text-info"/>
+                                        Tasks by Team
+                                    </h5>
+                                    <div class="team-bars mt-4">
+                                        <t t-set="team_labels" t-value="{'creative': 'Creative', 'media': 'Media Buying', 'social': 'Social Media', 'strategy': 'Strategy', 'client': 'Client Services', 'field': 'Field Team'}"/>
+                                        <t t-set="team_colors" t-value="{'creative': '#7c3aed', 'media': '#3b82f6', 'social': '#ec4899', 'strategy': '#22c55e', 'client': '#f59e0b', 'field': '#ef4444'}"/>
+                                        <t t-foreach="team_data" t-as="td">
+                                            <t t-set="td_pct" t-value="int(td['team_count'] / total_tasks * 100) if total_tasks else 0"/>
+                                            <div class="team-bar-item mb-3">
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span class="fw-medium"><t t-esc="team_labels.get(td['team'], td['team'] or 'Unassigned')"/></span>
+                                                    <span class="text-muted"><t t-esc="td['team_count']"/> tasks</span>
+                                                </div>
+                                                <div class="progress" style="height: 10px; border-radius: 5px;">
+                                                    <div class="progress-bar"
+                                                         t-attf-style="width: #{td_pct}%; background-color: #{team_colors.get(td['team'], '#6c63ff')}"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Priority Distribution -->
+                            <div class="col-lg-12">
+                                <div class="dashboard-card">
+                                    <h5 class="dashboard-card-title">
+                                        <i class="fa fa-bolt me-2 text-warning"/>
+                                        Priority Breakdown
+                                    </h5>
+                                    <div class="row g-3 mt-3">
+                                        <t t-set="pri_labels" t-value="{'urgent': 'Urgent', 'high': 'High', 'medium': 'Medium', 'low': 'Low'}"/>
+                                        <t t-set="pri_colors" t-value="{'urgent': '#ef4444', 'high': '#f59e0b', 'medium': '#3b82f6', 'low': '#22c55e'}"/>
+                                        <t t-set="pri_icons" t-value="{'urgent': 'fa-exclamation-circle', 'high': 'fa-arrow-up', 'medium': 'fa-minus', 'low': 'fa-arrow-down'}"/>
+                                        <t t-foreach="priority_data" t-as="pd">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="priority-card" t-attf-style="border-left: 4px solid #{pri_colors.get(pd['priority'], '#6c63ff')}">
+                                                    <div class="d-flex align-items-center">
+                                                        <i t-attf-class="fa #{pri_icons.get(pd['priority'], 'fa-circle')} fa-lg me-3"
+                                                           t-attf-style="color: #{pri_colors.get(pd['priority'], '#6c63ff')}"/>
+                                                        <div>
+                                                            <div class="priority-count"><t t-esc="pd['priority_count']"/></div>
+                                                            <div class="priority-label"><t t-esc="pri_labels.get(pd['priority'], pd['priority'])"/></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

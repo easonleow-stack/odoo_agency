@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         Override the default website layout header/footer
+         ============================================================ -->
+
+    <!-- Custom Header / Navbar -->
+    <template id="custom_header" inherit_id="website.layout" name="Agency Custom Header">
+        <xpath expr="//header" position="replace">
+            <header class="agency-header">
+                <nav class="navbar navbar-expand-lg agency-nav">
+                    <div class="container">
+                        <a class="navbar-brand agency-brand" href="/">
+                            <span class="brand-icon">A</span>
+                            <span class="brand-text">Ads On Marketing</span>
+                        </a>
+                        <button class="navbar-toggler" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#agencyNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="agencyNavbar">
+                            <ul class="navbar-nav ms-auto agency-nav-links">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/services">Services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link agency-cta-btn" href="/contact-us">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        </xpath>
+    </template>
+
+    <!-- Custom Footer -->
+    <template id="custom_footer" inherit_id="website.layout" name="Agency Custom Footer">
+        <xpath expr="//footer" position="replace">
+            <footer class="agency-footer">
+                <div class="container">
+                    <div class="row g-4 py-5">
+                        <!-- Brand Column -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="footer-brand">
+                                <span class="brand-icon">A</span>
+                                <span class="brand-text">Ads On Marketing</span>
+                            </div>
+                            <p class="footer-desc mt-3">
+                                A full-service digital marketing agency in Malaysia.
+                                We build brands, drive growth, and deliver measurable results
+                                through creative strategy and data-driven campaigns.
+                            </p>
+                            <div class="footer-social mt-3">
+                                <a href="#" class="social-icon"><i class="fa fa-facebook"/></a>
+                                <a href="#" class="social-icon"><i class="fa fa-instagram"/></a>
+                                <a href="#" class="social-icon"><i class="fa fa-linkedin"/></a>
+                                <a href="#" class="social-icon"><i class="fa fa-twitter"/></a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="col-lg-2 col-md-6">
+                            <h6 class="footer-heading">Quick Links</h6>
+                            <ul class="footer-links">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/services">Services</a></li>
+                                <li><a href="/portfolio">Portfolio</a></li>
+                                <li><a href="/about">About</a></li>
+                                <li><a href="/contact-us">Contact</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Services -->
+                        <div class="col-lg-3 col-md-6">
+                            <h6 class="footer-heading">Our Services</h6>
+                            <ul class="footer-links">
+                                <li><a href="/services">Creative Design</a></li>
+                                <li><a href="/services">Media Buying</a></li>
+                                <li><a href="/services">Social Media</a></li>
+                                <li><a href="/services">Strategy Consulting</a></li>
+                                <li><a href="/services">Field Marketing</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="col-lg-3 col-md-6">
+                            <h6 class="footer-heading">Get In Touch</h6>
+                            <ul class="footer-contact">
+                                <li>
+                                    <i class="fa fa-envelope me-2"/>
+                                    <a href="mailto:hello@adsonmarketing.com.my">hello@adsonmarketing.com.my</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone me-2"/>
+                                    <span>+60 3-1234 5678</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker me-2"/>
+                                    <span>Kuala Lumpur, Malaysia</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <p class="mb-0">&#169; 2026 Ads On Marketing Sdn Bhd. All rights reserved.</p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                                <a href="#" class="footer-bottom-link ms-3">Terms of Service</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </xpath>
+    </template>
+
+</odoo>

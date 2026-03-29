@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="homepage" name="Agency Homepage">
+        <t t-call="website.layout">
+            <t t-set="title">Ads On Marketing — Full-Service Digital Agency</t>
+
+            <div id="wrap" class="agency-page">
+
+                <!-- ====== HERO SECTION ====== -->
+                <section class="agency-hero">
+                    <div class="hero-bg-shapes">
+                        <div class="shape shape-1"/>
+                        <div class="shape shape-2"/>
+                        <div class="shape shape-3"/>
+                    </div>
+                    <div class="container position-relative">
+                        <div class="row align-items-center min-vh-75">
+                            <div class="col-lg-7">
+                                <div class="hero-badge">
+                                    <span class="badge-dot"/>
+                                    Full-Service Digital Agency
+                                </div>
+                                <h1 class="hero-title">
+                                    We Build <span class="text-gradient">Brands</span> That
+                                    <span class="text-gradient">Stand Out</span>
+                                </h1>
+                                <p class="hero-subtitle">
+                                    From creative design to media buying, social media management
+                                    to strategic planning — we deliver campaigns that drive
+                                    real business results across Malaysia and beyond.
+                                </p>
+                                <div class="hero-actions">
+                                    <a href="/contact-us" class="btn btn-agency-primary btn-lg">
+                                        Start Your Project
+                                        <i class="fa fa-arrow-right ms-2"/>
+                                    </a>
+                                    <a href="/portfolio" class="btn btn-agency-outline btn-lg ms-3">
+                                        View Our Work
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 d-none d-lg-block">
+                                <div class="hero-visual">
+                                    <div class="hero-card card-1">
+                                        <div class="card-icon bg-purple"><i class="fa fa-bullhorn"/></div>
+                                        <span>Campaign Live</span>
+                                        <small class="text-success">+24% CTR</small>
+                                    </div>
+                                    <div class="hero-card card-2">
+                                        <div class="card-icon bg-blue"><i class="fa fa-line-chart"/></div>
+                                        <span>Analytics</span>
+                                        <small class="text-info">Real-time</small>
+                                    </div>
+                                    <div class="hero-card card-3">
+                                        <div class="card-icon bg-green"><i class="fa fa-check-circle"/></div>
+                                        <span>Tasks Done</span>
+                                        <small class="text-success"><t t-esc="done_tasks"/> completed</small>
+                                    </div>
+                                    <div class="hero-card card-4">
+                                        <div class="card-icon bg-orange"><i class="fa fa-users"/></div>
+                                        <span>Teams Active</span>
+                                        <small><t t-esc="teams_count"/> departments</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ====== STATS COUNTER ====== -->
+                <section class="agency-stats">
+                    <div class="container">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="0">
+                                    <t t-esc="total_tasks"/>
+                                </div>
+                                <div class="stat-label">Total Tasks</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number text-success">
+                                    <t t-esc="done_tasks"/>
+                                </div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number text-info">
+                                    <t t-esc="active_campaigns"/>
+                                </div>
+                                <div class="stat-label">Active Campaigns</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number text-purple">
+                                    <t t-esc="teams_count"/>
+                                </div>
+                                <div class="stat-label">Specialist Teams</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ====== SERVICES OVERVIEW ====== -->
+                <section class="agency-section bg-light">
+                    <div class="container">
+                        <div class="section-header text-center">
+                            <span class="section-tag">What We Do</span>
+                            <h2 class="section-title">Our Core Services</h2>
+                            <p class="section-desc">
+                                A full spectrum of marketing services designed to elevate your brand
+                            </p>
+                        </div>
+                        <div class="row g-4 mt-4">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-card">
+                                    <div class="service-icon bg-gradient-purple">
+                                        <i class="fa fa-paint-brush"/>
+                                    </div>
+                                    <h5>Creative Design</h5>
+                                    <p>Eye-catching visuals, brand identities, and campaign creatives that capture attention and drive engagement.</p>
+                                    <a href="/services" class="service-link">Learn More <i class="fa fa-arrow-right"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-card">
+                                    <div class="service-icon bg-gradient-blue">
+                                        <i class="fa fa-bullhorn"/>
+                                    </div>
+                                    <h5>Media Buying</h5>
+                                    <p>Strategic ad placements across digital and traditional channels — billboards, social ads, Google, and more.</p>
+                                    <a href="/services" class="service-link">Learn More <i class="fa fa-arrow-right"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-card">
+                                    <div class="service-icon bg-gradient-pink">
+                                        <i class="fa fa-share-alt"/>
+                                    </div>
+                                    <h5>Social Media</h5>
+                                    <p>Community management, content calendars, influencer partnerships, and social-first brand building.</p>
+                                    <a href="/services" class="service-link">Learn More <i class="fa fa-arrow-right"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-card">
+                                    <div class="service-icon bg-gradient-green">
+                                        <i class="fa fa-lightbulb-o"/>
+                                    </div>
+                                    <h5>Strategy</h5>
+                                    <p>Market research, competitive analysis, and data-driven strategies that guide every campaign decision.</p>
+                                    <a href="/services" class="service-link">Learn More <i class="fa fa-arrow-right"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-card">
+                                    <div class="service-icon bg-gradient-orange">
+                                        <i class="fa fa-handshake-o"/>
+                                    </div>
+                                    <h5>Client Services</h5>
+                                    <p>Dedicated account management ensuring every project stays on track, on budget, and exceeds expectations.</p>
+                                    <a href="/services" class="service-link">Learn More <i class="fa fa-arrow-right"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-card">
+                                    <div class="service-icon bg-gradient-red">
+                                        <i class="fa fa-map-marker"/>
+                                    </div>
+                                    <h5>Field Marketing</h5>
+                                    <p>On-ground activations, event management, and experiential campaigns that create lasting impressions.</p>
+                                    <a href="/services" class="service-link">Learn More <i class="fa fa-arrow-right"/></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ====== FEATURED CAMPAIGNS ====== -->
+                <section class="agency-section">
+                    <div class="container">
+                        <div class="section-header text-center">
+                            <span class="section-tag">Live Projects</span>
+                            <h2 class="section-title">Current Campaigns</h2>
+                            <p class="section-desc">
+                                Real-time view of our active campaigns — powered by our internal task tracker
+                            </p>
+                        </div>
+                        <div class="row g-4 mt-4">
+                            <t t-foreach="featured_tasks" t-as="task">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="campaign-card">
+                                        <div class="campaign-header">
+                                            <span t-attf-class="priority-dot priority-#{task.priority}"/>
+                                            <span class="campaign-team">
+                                                <t t-esc="dict(task._fields['team'].selection).get(task.team, task.team)"/>
+                                            </span>
+                                            <span t-attf-class="campaign-status status-#{task.status}">
+                                                <t t-esc="dict(task._fields['status'].selection).get(task.status, task.status)"/>
+                                            </span>
+                                        </div>
+                                        <h5 class="campaign-name">
+                                            <t t-esc="task.name"/>
+                                        </h5>
+                                        <t t-if="task.campaign">
+                                            <p class="campaign-project">
+                                                <i class="fa fa-folder-open me-1"/>
+                                                <t t-esc="task.campaign"/>
+                                            </p>
+                                        </t>
+                                        <div class="campaign-progress">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <small>Progress</small>
+                                                <small><t t-esc="task.progress"/>%</small>
+                                            </div>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-gradient-purple"
+                                                     t-attf-style="width: #{task.progress}%"/>
+                                            </div>
+                                        </div>
+                                        <div class="campaign-footer">
+                                            <t t-if="task.deadline">
+                                                <span t-attf-class="campaign-deadline #{task.is_overdue and 'text-danger' or ''}">
+                                                    <i class="fa fa-calendar me-1"/>
+                                                    <t t-esc="task.deadline"/>
+                                                </span>
+                                            </t>
+                                            <t t-if="task.assignee_id">
+                                                <span class="campaign-assignee">
+                                                    <i class="fa fa-user me-1"/>
+                                                    <t t-esc="task.assignee_id.name"/>
+                                                </span>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-if="not featured_tasks">
+                                <div class="col-12 text-center py-5">
+                                    <div class="empty-state">
+                                        <i class="fa fa-rocket fa-3x text-muted mb-3"/>
+                                        <h5 class="text-muted">No active campaigns yet</h5>
+                                        <p class="text-muted">Campaigns will appear here once tasks are created in the backend.</p>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                        <div class="text-center mt-5">
+                            <a href="/portfolio" class="btn btn-agency-outline btn-lg">
+                                View All Projects <i class="fa fa-arrow-right ms-2"/>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ====== CTA SECTION ====== -->
+                <section class="agency-cta">
+                    <div class="cta-bg-shapes">
+                        <div class="shape shape-1"/>
+                        <div class="shape shape-2"/>
+                    </div>
+                    <div class="container position-relative text-center">
+                        <h2 class="cta-title">Ready to Grow Your Brand?</h2>
+                        <p class="cta-desc">
+                            Let's discuss how we can help take your business to the next level.
+                        </p>
+                        <a href="/contact-us" class="btn btn-white btn-lg">
+                            Get Started Today <i class="fa fa-arrow-right ms-2"/>
+                        </a>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

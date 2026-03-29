@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portfolio_page" name="Portfolio">
+        <t t-call="website.layout">
+            <t t-set="title">Portfolio — Ads On Marketing</t>
+
+            <div id="wrap" class="agency-page">
+
+                <!-- Page Hero -->
+                <section class="page-hero">
+                    <div class="container text-center">
+                        <span class="section-tag">Our Work</span>
+                        <h1 class="page-hero-title">Campaign Portfolio</h1>
+                        <p class="page-hero-desc">
+                            A live view of our campaigns and projects — powered by real data from our task tracker
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Filter Bar -->
+                <section class="filter-section">
+                    <div class="container">
+                        <div class="filter-bar">
+                            <a t-attf-href="/portfolio"
+                               t-attf-class="filter-chip #{not current_team and 'active' or ''}">All Teams</a>
+                            <t t-foreach="team_options" t-as="opt">
+                                <a t-attf-href="/portfolio?team=#{opt[0]}"
+                                   t-attf-class="filter-chip #{current_team == opt[0] and 'active' or ''}">
+                                    <t t-esc="opt[1]"/>
+                                </a>
+                            </t>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Campaign Grid -->
+                <section class="agency-section">
+                    <div class="container">
+                        <div class="row g-4">
+                            <t t-foreach="campaigns" t-as="campaign_key">
+                                <t t-set="c" t-value="campaigns[campaign_key]"/>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="portfolio-card">
+                                        <div class="portfolio-card-header">
+                                            <div class="portfolio-icon">
+                                                <i class="fa fa-folder-open"/>
+                                            </div>
+                                            <div class="portfolio-meta">
+                                                <span class="portfolio-count">
+                                                    <t t-esc="c['total']"/> tasks
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <h5 class="portfolio-name">
+                                            <t t-esc="c['name']"/>
+                                        </h5>
+                                        <div class="portfolio-teams">
+                                            <t t-foreach="c['teams']" t-as="t_key">
+                                                <span class="team-badge">
+                                                    <t t-esc="t_key"/>
+                                                </span>
+                                            </t>
+                                        </div>
+                                        <div class="portfolio-progress mt-3">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <small class="text-muted">Completion</small>
+                                                <small class="fw-bold"><t t-esc="c['progress']"/>%</small>
+                                            </div>
+                                            <div class="progress" style="height: 8px; border-radius: 4px;">
+                                                <div t-attf-class="progress-bar #{c['progress'] == 100 and 'bg-success' or 'bg-gradient-purple'}"
+                                                     t-attf-style="width: #{c['progress']}%"/>
+                                            </div>
+                                        </div>
+                                        <div class="portfolio-stats mt-3">
+                                            <div class="pstat">
+                                                <span class="pstat-num text-success"><t t-esc="c['done']"/></span>
+                                                <span class="pstat-label">Done</span>
+                                            </div>
+                                            <div class="pstat">
+                                                <span class="pstat-num text-warning"><t t-esc="c['total'] - c['done']"/></span>
+                                                <span class="pstat-label">Remaining</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-if="not campaigns">
+                                <div class="col-12 text-center py-5">
+                                    <div class="empty-state">
+                                        <i class="fa fa-briefcase fa-3x text-muted mb-3"/>
+                                        <h5 class="text-muted">No campaigns found</h5>
+                                        <p class="text-muted">
+                                            <t t-if="current_team">
+                                                No campaigns for this team filter. Try selecting "All Teams".
+                                            </t>
+                                            <t t-else="">
+                                                Campaigns will appear here once tasks with campaign names are created.
+                                            </t>
+                                        </p>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

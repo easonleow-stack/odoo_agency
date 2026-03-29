@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="contact_page" name="Contact Us">
+        <t t-call="website.layout">
+            <t t-set="title">Contact — Ads On Marketing</t>
+
+            <div id="wrap" class="agency-page">
+
+                <!-- Page Hero -->
+                <section class="page-hero">
+                    <div class="container text-center">
+                        <span class="section-tag">Contact Us</span>
+                        <h1 class="page-hero-title">Let's Start a Conversation</h1>
+                        <p class="page-hero-desc">
+                            Have a project in mind? Drop us a message and we'll get back to you within 24 hours
+                        </p>
+                    </div>
+                </section>
+
+                <section class="agency-section">
+                    <div class="container">
+                        <div class="row g-5">
+                            <!-- Contact Form -->
+                            <div class="col-lg-7">
+                                <div class="contact-form-wrapper">
+                                    <!-- Success Message -->
+                                    <t t-if="success">
+                                        <div class="alert alert-success d-flex align-items-center mb-4" role="alert">
+                                            <i class="fa fa-check-circle fa-2x me-3"/>
+                                            <div>
+                                                <strong>Thank you!</strong> Your message has been sent successfully.
+                                                We'll get back to you soon.
+                                            </div>
+                                        </div>
+                                    </t>
+
+                                    <h4 class="mb-4">Send Us a Message</h4>
+                                    <form action="/contact-us/submit" method="POST" class="contact-form">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" id="name"
+                                                           name="name" placeholder="Your Name" required="required"/>
+                                                    <label for="name">Your Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="email" class="form-control" id="email"
+                                                           name="email" placeholder="Email Address" required="required"/>
+                                                    <label for="email">Email Address</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="tel" class="form-control" id="phone"
+                                                           name="phone" placeholder="Phone Number"/>
+                                                    <label for="phone">Phone Number</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" id="subject"
+                                                           name="subject" placeholder="Subject" required="required"/>
+                                                    <label for="subject">Subject</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" id="message" name="message"
+                                                              placeholder="Your Message" style="height: 150px"
+                                                              required="required"/>
+                                                    <label for="message">Your Message</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-agency-primary btn-lg w-100">
+                                                    <i class="fa fa-paper-plane me-2"/>
+                                                    Send Message
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Contact Info Sidebar -->
+                            <div class="col-lg-5">
+                                <div class="contact-info-card">
+                                    <h4 class="mb-4">Contact Information</h4>
+                                    <div class="contact-info-item">
+                                        <div class="contact-info-icon bg-gradient-purple">
+                                            <i class="fa fa-map-marker"/>
+                                        </div>
+                                        <div>
+                                            <h6>Office Address</h6>
+                                            <p>Kuala Lumpur, Malaysia</p>
+                                        </div>
+                                    </div>
+                                    <div class="contact-info-item">
+                                        <div class="contact-info-icon bg-gradient-blue">
+                                            <i class="fa fa-envelope"/>
+                                        </div>
+                                        <div>
+                                            <h6>Email Us</h6>
+                                            <p>hello@adsonmarketing.com.my</p>
+                                        </div>
+                                    </div>
+                                    <div class="contact-info-item">
+                                        <div class="contact-info-icon bg-gradient-green">
+                                            <i class="fa fa-phone"/>
+                                        </div>
+                                        <div>
+                                            <h6>Call Us</h6>
+                                            <p>+60 3-1234 5678</p>
+                                        </div>
+                                    </div>
+                                    <div class="contact-info-item">
+                                        <div class="contact-info-icon bg-gradient-orange">
+                                            <i class="fa fa-clock-o"/>
+                                        </div>
+                                        <div>
+                                            <h6>Business Hours</h6>
+                                            <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-note mt-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fa fa-info-circle fa-lg text-info me-3 mt-1"/>
+                                        <p class="mb-0 text-muted">
+                                            Your enquiry will be automatically added to our CRM system
+                                            and assigned to the right team member. Expect a response
+                                            within 24 hours on business days.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

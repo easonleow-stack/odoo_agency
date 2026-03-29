@@ -1,5 +1,17 @@
 # Ads On Marketing — Odoo 18 Full-Stack Setup Guide
 
+# Upgrade Modules
+docker exec -it odoo_app odoo -d odoo_agency -u agency_tracker --stop-after-init
+
+docker-compose down
+
+docker-compose up -d
+docker-compose logs -f
+
+docker-compose restart ; docker-compose logs -f
+
+
+
 Database Name
 odoo_agency
 Email

@@ -101,6 +101,19 @@ class AgencyTask(models.Model):
         store=True, readonly=True
     )
 
+    currency_id = fields.Many2one(
+        'res.currency',
+        related='crm_lead_id.company_currency',
+        readonly=True,
+    )
+
+    expected_revenue = fields.Monetary(
+        string='Deal Value',
+        related='crm_lead_id.expected_revenue',
+        currency_field='currency_id',
+        store=True, readonly=True,
+    )
+
     # ── Computed Fields ────────────────────────────────────────────
     is_overdue = fields.Boolean(
         string='Overdue',
@@ -157,19 +170,20 @@ class AgencyTask(models.Model):
             self.progress = 100
 
     @api.model
-    def _group_by_status(self, present_ids, domain, **kwargs):
+    def _group_by_status(self, values, domain):
         """Ensures all Kanban columns show even when empty."""
-        return [
-            ('todo',       'To Do'),
-            ('inprogress', 'In Progress'),
-            ('review',     'Review'),
-            ('done',       'Done'),
-            ('stuck',      'Stuck'),
-        ]
+        return ['todo', 'inprogress', 'review', 'done', 'stuck']
 
     def action_mark_done(self):
         self.write({'status': 'done', 'progress': 100,
                     'date_closed': fields.Datetime.now()})
+
+    def action_send_review(self):
+        self.write({'status': 'review'})
+
+    def action_request_changes(self):
+        """Reviewer rejects — sends task back to In Progress."""
+        self.write({'status': 'inprogress'})
 
     def action_mark_inprogress(self):
         self.write({'status': 'inprogress'})

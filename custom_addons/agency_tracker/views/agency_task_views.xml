@@ -119,7 +119,9 @@
                 <field name="progress" string="Progress" widget="progressbar"/>
                 <field name="deadline" string="Due Date"/>
                 <field name="is_overdue" string="Overdue" widget="boolean"/>
+                <field name="currency_id" column_invisible="1"/>
                 <field name="crm_lead_id" string="Deal / Lead" optional="show"/>
+                <field name="expected_revenue" string="Deal Value" optional="show"/>
             </list>
         </field>
     </record>
@@ -130,24 +132,33 @@
         <field name="arch" type="xml">
             <form string="Agency Task">
                 <header>
+                    <!-- Assignee only -->
                     <button name="action_mark_inprogress" string="Start Task"
                             type="object" class="btn-primary"
-                            invisible="status in ('inprogress', 'done')"/>
-                    <button name="action_mark_done" string="Mark Done"
+                            invisible="status != 'todo' or assignee_id != uid"/>
+                    <button name="action_send_review" string="Send for Review"
+                            type="object" class="btn-warning"
+                            invisible="status != 'inprogress' or assignee_id != uid"/>
+
+                    <!-- Reviewer only (if no reviewer set, visible to everyone) -->
+                    <button name="action_mark_done" string="Approve &amp; Mark Done"
                             type="object" class="btn-success"
-                            invisible="status == 'done'"/>
+                            invisible="status != 'review' or (reviewer_id and reviewer_id != uid)"/>
+                    <button name="action_request_changes" string="Request Changes"
+                            type="object" class="btn-danger"
+                            invisible="status != 'review' or (reviewer_id and reviewer_id != uid)"/>
+
+                    <!-- Reviewer can reopen a completed task -->
+                    <button name="action_mark_inprogress" string="Reopen Task"
+                            type="object" class="btn-secondary"
+                            invisible="status != 'done' or (reviewer_id and reviewer_id != uid)"/>
+
                     <field name="status" widget="statusbar"
                            statusbar_visible="todo,inprogress,review,done"/>
                 </header>
 
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" type="object"
-                                name="action_mark_done" icon="fa-check-circle"
-                                invisible="status == 'done'">
-                            <div class="o_stat_info"><span class="o_stat_text">Mark Done</span></div>
-                        </button>
-                    </div>
+                    <div class="oe_button_box" name="button_box"/>
 
                     <div class="oe_title">
                         <h1>
@@ -176,6 +187,8 @@
                         <field name="crm_lead_id" domain="[('type', '=', 'opportunity')]"
                                options="{'no_create': True}"/>
                         <field name="client_name" readonly="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="expected_revenue" readonly="1"/>
                     </group>
 
                     <notebook>

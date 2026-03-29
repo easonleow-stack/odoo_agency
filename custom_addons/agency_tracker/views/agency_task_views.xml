@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_agency_task_kanban" model="ir.ui.view">
+        <field name="name">agency.task.kanban</field>
+        <field name="model">agency.task</field>
+        <field name="arch" type="xml">
+            <kanban
+                default_group_by="status"
+                group_create="false"
+                quick_create="true"
+                quick_create_view="agency_tracker.quick_create_agency_task"
+                class="o_kanban_small_column">
+
+                <field name="id"/>
+                <field name="name"/>
+                <field name="assignee_id"/>
+                <field name="team"/>
+                <field name="status"/>
+                <field name="priority"/>
+                <field name="deadline"/>
+                <field name="progress"/>
+                <field name="campaign"/>
+                <field name="is_overdue"/>
+                <field name="color"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click o_kanban_record_has_image_fill
+                                           #{record.is_overdue.raw_value ? 'border-danger' : ''}">
+
+                            <div t-attf-class="o_priority_strip bg-#{
+                                record.priority.raw_value == 'urgent' ? 'danger' :
+                                record.priority.raw_value == 'high'   ? 'warning' :
+                                record.priority.raw_value == 'medium' ? 'primary' : 'success'}"/>
+
+                            <div class="oe_kanban_content p-2">
+
+                                <t t-if="record.campaign.raw_value">
+                                    <small class="text-muted fw-bold text-uppercase" style="font-size:0.65rem;">
+                                        <t t-esc="record.campaign.raw_value"/>
+                                    </small>
+                                </t>
+
+                                <div class="o_kanban_record_title fw-bold mt-1 mb-2">
+                                    <t t-esc="record.name.raw_value"/>
+                                </div>
+
+                                <t t-if="record.progress.raw_value">
+                                    <div class="progress mb-2" style="height:4px;">
+                                        <div class="progress-bar"
+                                             t-attf-style="width: #{record.progress.raw_value}%"
+                                             t-attf-class="bg-#{record.progress.raw_value == 100 ? 'success' : 'primary'}"/>
+                                    </div>
+                                    <small class="text-muted"><t t-esc="record.progress.raw_value"/>%</small>
+                                </t>
+
+                                <div class="o_kanban_record_bottom mt-2">
+                                    <div class="oe_kanban_bottom_left">
+                                        <span t-attf-class="badge rounded-pill bg-secondary me-1" style="font-size:0.65rem;">
+                                            <t t-esc="record.team.value"/>
+                                        </span>
+                                        <t t-if="record.is_overdue.raw_value">
+                                            <span class="badge rounded-pill bg-danger" style="font-size:0.6rem;">OVERDUE</span>
+                                        </t>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <t t-if="record.deadline.raw_value">
+                                            <small t-attf-class="me-2 #{record.is_overdue.raw_value ? 'text-danger fw-bold' : 'text-muted'}">
+                                                <t t-esc="record.deadline.value"/>
+                                            </small>
+                                        </t>
+                                        <field name="assignee_id" widget="many2one_avatar_user"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="quick_create_agency_task" model="ir.ui.view">
+        <field name="name">agency.task.quick.create</field>
+        <field name="model">agency.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="name" placeholder="Task name..."/>
+                <field name="assignee_id"/>
+                <field name="deadline"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_agency_task_list" model="ir.ui.view">
+        <field name="name">agency.task.list</field>
+        <field name="model">agency.task</field>
+        <field name="arch" type="xml">
+            <list
+                string="Tasks"
+                decoration-danger="is_overdue == True"
+                decoration-muted="status == 'done'"
+                default_order="priority desc, deadline asc">
+
+                <field name="name" string="Task"/>
+                <field name="campaign" string="Campaign"/>
+                <field name="team" string="Team" widget="badge"/>
+                <field name="assignee_id" string="Assigned To" widget="many2one_avatar_user"/>
+                <field name="status" string="Status" widget="badge"
+                       decoration-info="status == 'inprogress'"
+                       decoration-warning="status == 'review'"
+                       decoration-success="status == 'done'"
+                       decoration-danger="status == 'stuck'"/>
+                <field name="priority" string="Priority" widget="badge"
+                       decoration-danger="priority == 'urgent'"
+                       decoration-warning="priority == 'high'"
+                       decoration-success="priority == 'low'"/>
+                <field name="progress" string="Progress" widget="progressbar"/>
+                <field name="deadline" string="Due Date"/>
+                <field name="is_overdue" string="Overdue" widget="boolean"/>
+                <field name="crm_lead_id" string="Deal / Lead" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_agency_task_form" model="ir.ui.view">
+        <field name="name">agency.task.form</field>
+        <field name="model">agency.task</field>
+        <field name="arch" type="xml">
+            <form string="Agency Task">
+                <header>
+                    <button name="action_mark_inprogress" string="Start Task"
+                            type="object" class="btn-primary"
+                            invisible="status in ('inprogress', 'done')"/>
+                    <button name="action_mark_done" string="Mark Done"
+                            type="object" class="btn-success"
+                            invisible="status == 'done'"/>
+                    <field name="status" widget="statusbar"
+                           statusbar_visible="todo,inprogress,review,done"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_mark_done" icon="fa-check-circle"
+                                invisible="status == 'done'">
+                            <div class="o_stat_info"><span class="o_stat_text">Mark Done</span></div>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Task name..."/>
+                        </h1>
+                        <h4 class="text-muted">
+                            <field name="campaign" placeholder="Campaign / Project name..."/>
+                        </h4>
+                    </div>
+
+                    <group>
+                        <group string="Assignment">
+                            <field name="assignee_id" widget="many2one_avatar_user"/>
+                            <field name="reviewer_id" widget="many2one_avatar_user"/>
+                            <field name="team"/>
+                        </group>
+                        <group string="Schedule &amp; Status">
+                            <field name="priority" widget="priority"/>
+                            <field name="deadline" widget="date"/>
+                            <field name="date_started"/>
+                            <field name="progress" widget="percentpie"/>
+                        </group>
+                    </group>
+
+                    <group string="CRM Linkage">
+                        <field name="crm_lead_id" domain="[('type', '=', 'opportunity')]"
+                               options="{'no_create': True}"/>
+                        <field name="client_name" readonly="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Task Brief" name="description">
+                            <field name="description" widget="html"
+                                   placeholder="Add full task brief, links, reference materials..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_agency_task_search" model="ir.ui.view">
+        <field name="name">agency.task.search</field>
+        <field name="model">agency.task</field>
+        <field name="arch" type="xml">
+            <search string="Search Tasks">
+                <field name="name" string="Task Name"/>
+                <field name="campaign" string="Campaign"/>
+                <field name="assignee_id" string="Assigned To"/>
+                <field name="crm_lead_id" string="Deal / Lead"/>
+
+                <filter name="my_tasks"     string="My Tasks"
+                        domain="[('assignee_id', '=', uid)]"/>
+                <filter name="overdue"      string="Overdue"
+                        domain="[('deadline', '&lt;', context_today().strftime('%Y-%m-%d')),
+                                 ('status', 'not in', ['done'])]"/>
+                <filter name="in_progress"  string="In Progress"
+                        domain="[('status', '=', 'inprogress')]"/>
+                <filter name="stuck"        string="Stuck"
+                        domain="[('status', '=', 'stuck')]"/>
+                <filter name="done"         string="Done"
+                        domain="[('status', '=', 'done')]"/>
+                <separator/>
+                <filter name="urgent"       string="Urgent Priority"
+                        domain="[('priority', '=', 'urgent')]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="group_team"     string="Team"
+                            context="{'group_by': 'team'}"/>
+                    <filter name="group_status"   string="Status"
+                            context="{'group_by': 'status'}"/>
+                    <filter name="group_priority" string="Priority"
+                            context="{'group_by': 'priority'}"/>
+                    <filter name="group_assignee" string="Assigned To"
+                            context="{'group_by': 'assignee_id'}"/>
+                    <filter name="group_campaign" string="Campaign"
+                            context="{'group_by': 'campaign'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_agency_task" model="ir.actions.act_window">
+        <field name="name">Task Tracker</field>
+        <field name="res_model">agency.task</field>
+        <field name="view_mode">kanban,list,form</field> 
+        <field name="context">{'search_default_my_tasks': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No tasks yet — click <strong>New</strong> to create one!
+            </p>
+        </field>
+    </record>
+
+</odoo>

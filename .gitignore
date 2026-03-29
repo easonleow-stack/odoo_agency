@@ -1,0 +1,18 @@
+# Never commit secrets
+.env
+
+# Odoo filestore (large binary data)
+odoo-data/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor configs
+.vscode/
+.idea/

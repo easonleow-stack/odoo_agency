@@ -1,0 +1,44 @@
+/* ─────────────────────────────────────────────────────────────
+   Ads On Marketing — Agency Task Tracker — Odoo Backend CSS
+   Matches the dark AgencyBoard aesthetic inside Odoo's UI
+   ───────────────────────────────────────────────────────────── */
+
+/* Priority colour strip on Kanban cards */
+.o_priority_strip {
+    height: 4px;
+    border-radius: 2px 2px 0 0;
+    margin: -1px -1px 0 -1px;
+}
+
+/* Kanban card hover */
+.o_kanban_record:hover {
+    box-shadow: 0 2px 12px rgba(108, 99, 255, 0.2);
+    border-color: #6c63ff !important;
+}
+
+/* Overdue row in list view */
+.o_data_row.text-danger td {
+    color: #ef4444 !important;
+}
+
+/* Progress bar coloring on list view */
+.o_progressbar .o_progressbar_complete {
+    background: #6c63ff;
+}
+
+/* Status badge colour overrides */
+.badge[data-field="status"][data-value="inprogress"] { background-color: #3b82f6 !important; }
+.badge[data-field="status"][data-value="review"]     { background-color: #7c3aed !important; }
+.badge[data-field="status"][data-value="done"]       { background-color: #22c55e !important; }
+.badge[data-field="status"][data-value="stuck"]      { background-color: #ef4444 !important; }
+.badge[data-field="status"][data-value="todo"]       { background-color: #475569 !important; }
+
+/* Priority badge colours */
+.badge[data-field="priority"][data-value="urgent"] { background-color: #ef4444 !important; }
+.badge[data-field="priority"][data-value="high"]   { background-color: #f59e0b !important; }
+.badge[data-field="priority"][data-value="low"]    { background-color: #22c55e !important; }
+
+/* Border-danger on overdue kanban cards */
+.oe_kanban_card.border-danger {
+    border-left: 3px solid #ef4444 !important;
+}

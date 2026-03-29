@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agency_task_user,agency.task.user,model_agency_task,base.group_user,1,1,1,0
+access_agency_task_manager,agency.task.manager,model_agency_task,base.group_system,1,1,1,1
+access_agency_task_tag_user,agency.task.tag.user,model_agency_task_tag,base.group_user,1,1,1,0
+access_agency_task_tag_manager,agency.task.tag.manager,model_agency_task_tag,base.group_system,1,1,1,1

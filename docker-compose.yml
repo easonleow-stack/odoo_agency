@@ -1,0 +1,59 @@
+version: "3.8"
+
+# ─────────────────────────────────────────────────────────────────
+#  Ads On Marketing — LOCAL DEVELOPMENT ENVIRONMENT
+#  Services: PostgreSQL 15 · Odoo 18
+# ─────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── 1. PostgreSQL Database ──────────────────────────────────────
+  db:
+    image: postgres:15-alpine
+    container_name: odoo_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo_local_password  # Hardcoded for local testing
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - odoo_net
+
+  # ── 2. Odoo 18 Application ──────────────────────────────────────
+  odoo:
+    image: odoo:18.0
+    container_name: odoo_app
+    restart: unless-stopped
+    depends_on:
+      - db  # Changed this to a simple dependency
+    ports:
+      - "8069:8069"   # Main web interface
+      - "8072:8072"   # Long-polling (live chat / real-time updates)
+    environment:
+      HOST: db
+      PORT: 5432
+      USER: odoo
+      PASSWORD: odoo_local_password  # Must match the DB password above
+    volumes:
+      - odoo_data:/var/lib/odoo                          # Odoo filestore
+      - ./custom_addons:/mnt/extra-addons                # Your custom modules
+      - ./odoo.conf:/etc/odoo/odoo.conf               # Odoo config
+    networks:
+      - odoo_net
+    command: odoo --config /etc/odoo/odoo.conf
+
+# ─────────────────────────────────────────────────────────────────
+#  Named Volumes
+# ─────────────────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+  odoo_data:
+
+# ─────────────────────────────────────────────────────────────────
+#  Network
+# ─────────────────────────────────────────────────────────────────
+networks:
+  odoo_net:
+    driver: bridge

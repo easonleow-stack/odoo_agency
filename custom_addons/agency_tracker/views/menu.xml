@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Top-Level App Menu (shows in the home screen grid) ─── -->
+    <menuitem
+        id="menu_agency_root"
+        name="Agency Board"
+        web_icon="agency_tracker,static/description/icon.png"
+        sequence="10"/>
+
+    <!-- ── Sub menus inside Agency Board ──────────────────────── -->
+    <menuitem
+        id="menu_agency_tasks"
+        name="Task Tracker"
+        parent="menu_agency_root"
+        action="action_agency_task"
+        sequence="10"/>
+
+    <!-- CRM shortcut — uses Odoo's built-in CRM action -->
+    <menuitem
+        id="menu_agency_crm"
+        name="Sales Pipeline"
+        parent="menu_agency_root"
+        action="crm.crm_lead_all_leads"
+        sequence="20"/>
+
+</odoo>
